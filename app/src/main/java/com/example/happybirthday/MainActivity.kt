@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -35,7 +36,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    BirthdayGreetingWithImage(message = "Happy Birthday Ana!", from = "Jeffer Marcelino")
+                    BirthdayGreetingWithImage(
+                        message = stringResource(id = R.string.happy_birthday_text),
+                        from = stringResource(id = R.string.signature_text)
+                    )
                 }
             }
         }
@@ -44,22 +48,22 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun BirthdayGreetingWithText(message: String, from: String, modifier: Modifier = Modifier) {
-    Column {
+    Column (
+        modifier = Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text(
             text = message,
             fontSize = 36.sp,
             modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentWidth(align = Alignment.Start)
-                .padding(start = 16.dp, end = 16.dp)
+                .padding(top = 16.dp)
         )
         Text(
-            text = "- from $from",
+            text = "$from",
             fontSize = 24.sp,
             modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentWidth(align = Alignment.End)
-                .padding(start = 16.dp, end = 16.dp)
+                .padding(top = 16.dp)
         )
     }
 }
@@ -71,9 +75,6 @@ fun BirthdayGreetingWithImage(message: String, from: String, modifier: Modifier 
         Image(
             painter = image,
             contentDescription = null,
-            modifier = Modifier
-                .fillMaxHeight()
-                .fillMaxWidth(),
             contentScale = ContentScale.Crop
         )
         BirthdayGreetingWithText(message = message, from = from)
@@ -84,6 +85,9 @@ fun BirthdayGreetingWithImage(message: String, from: String, modifier: Modifier 
 @Composable
 fun BirthdayGreetingWithImagePreview() {
     HappyBirthdayTheme {
-        BirthdayGreetingWithImage(message = stringResource(R.string.happy_birthday_text), from = "Jeffer Marcelino")
+        BirthdayGreetingWithImage(
+            message = stringResource(id = R.string.happy_birthday_text),
+            from = stringResource(id = R.string.signature_text)
+        )
     }
 }
