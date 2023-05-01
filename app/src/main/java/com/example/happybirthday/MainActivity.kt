@@ -7,11 +7,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -47,7 +45,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun BirthdayGreetingWithText(message: String, from: String, modifier: Modifier = Modifier) {
+fun BirthdayGreetingWithText(message: String, from: String) {
     Column (
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Top,
@@ -60,7 +58,7 @@ fun BirthdayGreetingWithText(message: String, from: String, modifier: Modifier =
                 .padding(top = 16.dp)
         )
         Text(
-            text = "$from",
+            text = from,
             fontSize = 24.sp,
             modifier = Modifier
                 .padding(top = 16.dp)
@@ -69,7 +67,7 @@ fun BirthdayGreetingWithText(message: String, from: String, modifier: Modifier =
 }
 
 @Composable
-fun BirthdayGreetingWithImage(message: String, from: String, modifier: Modifier = Modifier) {
+fun BirthdayGreetingWithImage(message: String, from: String) {
     val image = painterResource(id = R.drawable.androidparty)
     Box {
         Image(
